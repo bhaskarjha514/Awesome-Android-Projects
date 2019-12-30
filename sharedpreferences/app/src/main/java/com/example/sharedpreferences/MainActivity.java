@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = shrd.edit();
                 editor.putString("str", msg);
                 editor.apply();
-                
+
                 textView.setText(msg);
 
             }

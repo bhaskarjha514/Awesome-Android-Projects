@@ -8,6 +8,8 @@ import android.util.Log;
 import com.example.dbdemo.data.MyDbHandler;
 import com.example.dbdemo.model.Contact;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -37,7 +39,25 @@ public class MainActivity extends AppCompatActivity {
         RielMar.setName("Rielmar");
         // Adding a contact to the db
         db.addContact(RielMar);
-        Log.d("dbsql", "Id For MAriel and kuya mar are successfully added to the database");
+
+        RielMar.setName("Arlex");
+        RielMar.setPhoneNumber("0000000000");
+        int affectedRows = db.updateContact(RielMar);
+
+        Log.d("dbsql", "No of affected rows are "+ affectedRows);
+        db.deleteContactById(1);
+        db.deleteContactById(2);
+        db.deleteContactById(3);
+
+        // Get all contacts
+        List<Contact> allContacts = db.getAllContacts();
+        for(Contact contact: allContacts){
+
+            Log.d("dbsql", "Id: "+contact.getId()+ "\n" +
+                            "Phone Number: " + contact.getPhoneNumber() + "\n" +
+                            "Name: "+contact.getName()+ "\n" );
+        }
+        Log.d("dbsql", "Bro You have "+ db.getCount()+ "contacts in your database");
 
     }
 }
